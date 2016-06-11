@@ -1,0 +1,47 @@
+#! /usr/local/bin/node
+
+const prompt = require('prompt');
+const plaid = require('plaid');
+const dotenv = require('dotenv');
+
+dotenv.load();
+const client_id = process.env.PLAIDCLIENTID
+const  secret = process.env.PLAIDSECRET
+const plaid_env = plaid.environments.tartan
+
+const plaidClient = new plaid.Client(client_id, secret, plaid_env);
+
+const schema = {
+  properties: {
+    bank: { default: 'wells' },
+    transactions: { default: 50 },
+    username: { default: 'plaid_test' },
+    password: {
+      default: 'plaid_good',
+      hidden: true
+    }
+  }
+}
+
+prompt.start();
+prompt.get(schema, (err, result) => {
+  plaidClient.addConnectUser(result.bank, {
+    username: result.username,
+    password: result.password,
+  }, function(err, mfaResponse, response) {
+    if (err != null) {
+      console.error(err);
+    }
+    else if (mfaResponse != null) {
+      console.log('MFA happened and we gave up');
+    }
+    else {
+      response.transactions.map((x, val) => {
+        while (val < result.transactions) {
+          console.log('» ' + x.amount + ' | ' + x.name + ' | ' + x.date)
+          return val++
+        }
+      })
+    }
+  });
+});

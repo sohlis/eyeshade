@@ -1,0 +1,16 @@
+{
+  "name": "plaidapp",
+  "version": "1.0.0",
+  "description": "a fun app for kids",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefguy hungryfood",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^2.0.0",
+    "plaid": "^1.0.10",
+    "prompt": "^1.0.0"
+  }
+}
