@@ -36,12 +36,31 @@ prompt.get(schema, (err, result) => {
       console.log('MFA happened and we gave up');
     }
     else {
+      console.log(' ');
       response.transactions.map((x, val) => {
         while (val < result.transactions) {
           console.log('» ' + x.amount + ' | ' + x.name + ' | ' + x.date)
           return val++
         }
       })
+    }
+  });
+  plaidClient.addAuthUser(result.bank, {
+    username: result.username,
+    password: result.password,
+  }, function(err, mfaResponse, response) {
+    if (err != null) {
+      console.error(err);
+    }
+    else if (mfaResponse != null) {
+      console.log('MFA happened and we gave up');
+    }
+    else {
+      console.log('--------');
+        response.accounts.map(x => {
+          console.log('$' + x.balance.current + ' in ' + x.meta.name);
+        })
+      console.log('--------');
     }
   });
 });

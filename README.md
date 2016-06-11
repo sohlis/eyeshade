@@ -1,5 +1,5 @@
 ## Eyeshade
-### _Knowing feels so good_
+#### _Knowing feels so good_
 
 You input your bank stuff:
 ```
@@ -10,6 +10,13 @@ prompt: password:  (<default hidden>)
 ```
 You get:
 ```
+--------
+$1274.93 in Plaid Savings
+$1253.32 in Plaid Checking
+$7255.23 in Plaid Premier Checking
+$2275.58 in Plaid Credit Card
+--------
+
 » 200 | ATM Withdrawal | 2014-07-21
 » 240 | Online Transfer from External Sav ...3092 | 2014-07-24
 » 2307.15 | Apple Store | 2014-06-23
@@ -29,7 +36,7 @@ You get:
 ```
 
 
-#### Run it, fellow traveler
+##### Run it, fellow traveler
 `./index`
 
 ##### Your `.env` file looks like
